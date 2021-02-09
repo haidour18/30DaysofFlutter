@@ -11,7 +11,7 @@ class _SignUpState extends State<SignUp> {
 
   final formkey =GlobalKey<FormState>();
   AuthMethod authmethods =new AuthMethod();
-  bool isLoading =true;
+  bool isLoading =false;
   TextEditingController usernamecontorller = new TextEditingController();
   TextEditingController passwordcontorller = new TextEditingController();
   TextEditingController emailcontroller = new TextEditingController();
@@ -63,7 +63,7 @@ signMeUp() {
                 ),
                 TextFormField(
                   validator: (val){
-                    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-      zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val) ? null : "Enter correct email";
+                    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val)?null : "Enter correct Email";
                   },
                   controller: emailcontroller,
                   decoration: InputDecoration(
