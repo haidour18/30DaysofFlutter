@@ -1,3 +1,4 @@
+import 'package:chat_app/services/Auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -6,6 +7,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  TextEditingController emailEditingController = new TextEditingController();
+  TextEditingController passwordEditingController = new TextEditingController();
+  AuthMethod authmethods =new AuthMethod();
+  final formkey =GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
