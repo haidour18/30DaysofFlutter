@@ -1,5 +1,6 @@
 import 'package:chat_app/services/Auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:database/database.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -9,23 +10,36 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
-  final formkey =GlobalKey<FormState>();
-  AuthMethod authmethods =new AuthMethod();
-  bool isLoading =false;
+
   TextEditingController usernamecontorller = new TextEditingController();
   TextEditingController passwordcontorller = new TextEditingController();
   TextEditingController emailcontroller = new TextEditingController();
-signMeUp() {
-  if (formkey.currentState.validate( )) {
+  AuthMethod authmethods =new AuthMethod();
+  final formkey =GlobalKey<FormState>();
+  bool isLoading =false;
+signMeUp() async {
+  if (formkey.currentState.validate()) {
     setState( () {
       isLoading = true;
     } );
     
   }
 
-  authmethods.signUpWithEmailAndPassword(emailcontroller.text, passwordcontorller.text).then((val){
-    print("$val");
-  });}
+  await authmethods.signUpWithEmailAndPassword(emailcontroller.text, passwordcontorller.text).then((result){
+    if(result != null) {
+      Map<String , String> userDataMap = {
+        "userName": usernamecontorller.text ,
+        "userEmail": emailcontroller.text
+      };
+      databaseMethods.addUserInfo(userDataMap);
+
+      HelperFunctions.saveUserLoggedInSharedPreference(true);
+      HelperFunctions.saveUserNameSharedPreference(usernameEditingController.text);
+      HelperFunctions.saveUserEmailSharedPreference(emailEditingController.text);
+
+      Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) => ChatRoom()
+    }});}
 
   @override
   Widget build(BuildContext context) {
