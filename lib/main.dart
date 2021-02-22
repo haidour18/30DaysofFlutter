@@ -1,3 +1,5 @@
+import 'package:chat_app/helper/authenticate.dart';
+import 'package:chat_app/views/ChatRoomScreen.dart';
 import 'package:chat_app/views/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: SignUp(),
+      home: ChatRoom(),
     );
   }
 }
