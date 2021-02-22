@@ -18,7 +18,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordcontorller = new TextEditingController();
   TextEditingController emailcontroller = new TextEditingController();
   AuthMethod authmethods = new AuthMethod();
-  DatabaseMethods databaseMethods=new DatabaseMethods();
+  DatabaseMethods databaseMethods = new DatabaseMethods();
   final formkey = GlobalKey<FormState>();
   bool isLoading = false;
   signMeUp() async {
@@ -27,16 +27,16 @@ class _SignUpState extends State<SignUp> {
         isLoading = true;
       });
     }
+    Map<String, String> userInfoMap = {
+      "name": usernamecontorller.text,
+      "email": emailcontroller.text
+    };
 
     await authmethods
         .signUpWithEmailAndPassword(
             emailcontroller.text, passwordcontorller.text)
         .then((result) {
-          Map<String ,String> UserInfoMap={
-            "name":usernamecontorller.text,
-            "email":emailcontroller.text
-          };
-databaseMethods.uploadUserInfo(userMap);
+      databaseMethods.uploadUserInfo(userInfoMap);
       if (result != null) {
         Map<String, String> userDataMap = {
           "userName": usernamecontorller.text,

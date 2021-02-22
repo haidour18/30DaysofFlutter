@@ -17,9 +17,9 @@ class _ChatRoomState extends State<ChatRoom>{
 actions: [
   GestureDetector(
     onTap: (){
-      authMethod.signOut();
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Authenticate()));
+
     },
     child: Container(
     

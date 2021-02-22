@@ -50,7 +50,7 @@ print(e.toString());
   }
   Future signOut ()async{
     try{
-      await FirebaseAuth.instance.signOut();
+      await auth.signOut();
     }
     catch(e){
 print(e.toString());

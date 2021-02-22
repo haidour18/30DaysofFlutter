@@ -9,8 +9,12 @@ getUserByusername(String username)
 uploadUserInfo(userMap)
 {
   FirebaseFirestore.instance.collection("users")
-  .add(userMap);
+  .add(userMap).catchError((e){
+print(e.toString());
+  }
+  );
 
 
 }
+
 }
